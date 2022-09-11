@@ -49,8 +49,6 @@ const removeContact = async (userId, contactId) => {
 };
 
 const addContact = async (userId, body) => {
-  console.log(userId)
-  console.log(body)
   const result = await Contacts.create({ ...body, owner: userId });
   return result;
 };
@@ -70,7 +68,6 @@ const updateStatusContact = async (userId, contactId, { favorite }) => {
     { favorite },
     { new: true }
   );
-  console.log(result);
   return result;
 };
 

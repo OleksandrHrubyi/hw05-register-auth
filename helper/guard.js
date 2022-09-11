@@ -4,9 +4,7 @@ require("../config/passport");
 
 const guard = (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user) => {
-
-    console.log(user, 'user in guard');
-    if (!user || err || !user.token) {
+  if (!user || err || !user.token) {
       return res.status(HttpCode.UNAUTH).json({
         status: "error",
         code: HttpCode.UNAUTH,

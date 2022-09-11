@@ -19,13 +19,6 @@ const registration = async (req, res, next) => {
   }
   try {
     const newUser = await Users.create(req.body);
-    // try {
-    //   const emailService = new EmailService(process.env.NODE_ENV)
-    //   await emailService.sendVerifyEmail(newUser.verifyTokenEmail, newUser.email, newUser.name)
-    // }
-    // catch (e) {
-    //   console.log(e.message);
-    // }
     return res.status(HttpCode.CREATED).json({
       status: "succes",
       code: HttpCode.CREATED,
@@ -70,7 +63,6 @@ const login = async (req, res, next) => {
 };
 
 const logout = async (req, res, next) => {
-  console.log(req.user)
   const id = req.user.id;
   await Users.updateToken(id, null);
   return res.status(HttpCode.NO_CONTENT).json({});
@@ -118,7 +110,8 @@ const saveAvatarUser = async (req) => {
   }
   catch (err) {
     console.log(err.message);
-  }
+    return err
+   }
   const oldAvatar = req.user.avatar
   if (oldAvatar.includes(`${FOLDER_AVATARS}`)) {
     await fs.unlink(path.join(process.cwd(), 'public', oldAvatar))
