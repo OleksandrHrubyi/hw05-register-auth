@@ -69,8 +69,10 @@ const logout = async (req, res, next) => {
 };
 
 const refresh = async (req, res, next) => {
+  console.log(req);
   return res.status(HttpCode.OK).json({
     code: HttpCode.OK,
+    user: req.user.name
   });
 };
 

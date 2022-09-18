@@ -7,6 +7,8 @@ const schemaAddContact = Joi.object({
     tlds: { allow: ["com", "net"] },
   }),
   phone: Joi.number(),
+  year: Joi.string().required(),
+  link: Joi.string(),
   favorite: Joi.boolean().optional(),
 });
 
@@ -21,6 +23,8 @@ const schemaQueryContact = Joi.object({
 
 const schemaUpdateContact = Joi.object({
   name: Joi.string().min(3).max(30).optional(),
+  year: Joi.string().optional(),
+  link: Joi.string().optional(),
   email: Joi.string()
     .email({
       minDomainSegments: 2,

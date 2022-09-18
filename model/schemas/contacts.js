@@ -1,3 +1,4 @@
+const { string } = require("joi");
 const mongoose = require("mongoose");
 const { Schema, model, SchemaTypes } = mongoose;
 const mongoosePaginate = require("mongoose-paginate-v2");
@@ -16,6 +17,12 @@ const contactsSchema = new Schema({
   },
   phone: {
     type: Number,
+  },
+  year: {
+    type: String,
+  },
+  link: {
+    type: String,
   },
   favorite: {
     type: String,
